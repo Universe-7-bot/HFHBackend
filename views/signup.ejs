@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>hfh</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+
+<body>
+    name: <input type="text" id="name"><br>
+    email: <input type="email" id="email"><br>
+    password: <input type="text" id="password"><br>
+    state: <input type="text" id="state"><br>
+    district: <input type="text" id="district"><br>
+    <button onclick="submit()" type="submit">Submit</button>
+
+    <script>
+        function submit() {
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let state = document.getElementById("state").value;
+            let district = document.getElementById("district").value;
+
+            fetch("http://localhost:3000/signup", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ name, email, password, state, district }) }).then((res) => {
+                return res.json();
+            }).then((f_res) => {
+                alert(f_res.message);
+            })
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>
